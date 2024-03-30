@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_meals/models/category.dart';
+import 'package:super_meals/screens/meals_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
