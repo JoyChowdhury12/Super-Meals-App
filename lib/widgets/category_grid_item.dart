@@ -4,22 +4,14 @@ import 'package:super_meals/screens/meals_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final Category category;
-
-  const CategoryGridItem({super.key, required this.category});
+  final Function() onSelectCategory;
+  const CategoryGridItem(
+      {super.key, required this.category, required this.onSelectCategory});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MealsScreen(
-                    title: category.title,
-                    meals: [],
-                  )),
-        );
-      },
+      onTap: onSelectCategory,
       splashColor: Theme.of(context).secondaryHeaderColor,
       borderRadius: BorderRadius.circular(16),
       child: Container(
