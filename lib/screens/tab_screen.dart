@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:super_meals/screens/categories_screen.dart';
+import 'package:super_meals/screens/filter_screen.dart';
 import 'package:super_meals/screens/meals_screen.dart';
 import 'package:super_meals/widgets/main_drawer.dart';
 
 import '../models/meal.dart';
+
+const kInitialFilter = {
+  Filter.glutenFree: false,
+};
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -22,6 +27,8 @@ class _TabScreenState extends State<TabScreen> {
   }
 
   final List<Meal> _favouriteMeals = [];
+
+  Map<Filter, bool> _selectedFilters = kInitialFilter;
 
   void _showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -44,6 +51,21 @@ class _TabScreenState extends State<TabScreen> {
     }
   }
 
+  void _setScreen(String identifier) async {
+    Navigator.of(context).pop();
+    if (identifier == "filters") {
+      final result = await Navigator.push<Map<Filter, bool>>(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FilterScreen(
+                    currrentFilters: _selectedFilters,
+                  )));
+      setState(() {
+        _selectedFilters = result ?? kInitialFilter;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget activeScreen = CategoriesScreen(
@@ -62,7 +84,11 @@ class _TabScreenState extends State<TabScreen> {
       appBar: AppBar(
         title: Text(activeTitle),
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(
+        onSelectScreen: (identifier) {
+          _setScreen(identifier);
+        },
+      ),
       body: activeScreen,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
