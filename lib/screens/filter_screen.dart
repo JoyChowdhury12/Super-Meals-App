@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 enum Filter { glutenFree, lactoseFree, vegeterianFree, veganFree }
 
 class FilterScreen extends StatefulWidget {
+  final currentFilters;
   final Map<Filter, bool> currrentFilters;
 
-  const FilterScreen({super.key, required this.currrentFilters});
+  const FilterScreen(
+      {super.key, required this.currrentFilters, this.currentFilters});
 
   @override
   State<FilterScreen> createState() => _FilterScreenState();
@@ -20,6 +22,9 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   void initState() {
     _glutenFreeFilterSet = widget.currrentFilters[Filter.glutenFree]!;
+    _lactoseFreeFilterSet = widget.currrentFilters[Filter.lactoseFree]!;
+    _veganFreeFilterSet = widget.currrentFilters[Filter.veganFree]!;
+    _vegeterianFreeFilterSet = widget.currrentFilters[Filter.vegeterianFree]!;
     super.initState();
   }
 
@@ -31,7 +36,12 @@ class _FilterScreenState extends State<FilterScreen> {
       ),
       body: WillPopScope(
         onWillPop: () async {
-          Navigator.of(context).pop({Filter.glutenFree: _glutenFreeFilterSet});
+          Navigator.of(context).pop({
+            Filter.glutenFree: _glutenFreeFilterSet,
+            Filter.lactoseFree: _lactoseFreeFilterSet,
+            Filter.veganFree: _veganFreeFilterSet,
+            Filter.vegeterianFree: _vegeterianFreeFilterSet,
+          });
           return false;
         },
         child: Column(
@@ -49,7 +59,67 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               subtitle: Text(
-                "Only inclusw Gluten Free ingredients",
+                "Only include Gluten Free ingredients",
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              activeColor: Theme.of(context).colorScheme.tertiary,
+              contentPadding: EdgeInsets.only(left: 34, right: 22),
+            ),
+            SwitchListTile(
+              value: _lactoseFreeFilterSet,
+              onChanged: (newValue) {
+                setState(() {
+                  _lactoseFreeFilterSet = newValue;
+                });
+              },
+              title: Text(
+                "lactose Free",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              subtitle: Text(
+                "Only include Lactose Free ingredients",
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              activeColor: Theme.of(context).colorScheme.tertiary,
+              contentPadding: EdgeInsets.only(left: 34, right: 22),
+            ),
+            SwitchListTile(
+              value: _veganFreeFilterSet,
+              onChanged: (newValue) {
+                setState(() {
+                  _veganFreeFilterSet = newValue;
+                });
+              },
+              title: Text(
+                "Vegan Free",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              subtitle: Text(
+                "Only include Vegan Free ingredients",
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              activeColor: Theme.of(context).colorScheme.tertiary,
+              contentPadding: EdgeInsets.only(left: 34, right: 22),
+            ),
+            SwitchListTile(
+              value: _vegeterianFreeFilterSet,
+              onChanged: (newValue) {
+                setState(() {
+                  _vegeterianFreeFilterSet = newValue;
+                });
+              },
+              title: Text(
+                "Vegeterian Free",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              subtitle: Text(
+                "Only include Vegeterian Free ingredients",
                 style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground),
               ),

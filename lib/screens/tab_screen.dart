@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_meals/data/dummy_data.dart';
 import 'package:super_meals/screens/categories_screen.dart';
 import 'package:super_meals/screens/filter_screen.dart';
 import 'package:super_meals/screens/meals_screen.dart';
@@ -8,6 +9,9 @@ import '../models/meal.dart';
 
 const kInitialFilter = {
   Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegeterianFree: false,
+  Filter.veganFree: false,
 };
 
 class TabScreen extends StatefulWidget {
@@ -68,8 +72,25 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where((meal) {
+      if (_selectedFilters[Filter.glutenFree]! && meal.isGlutenFree) {
+        return true;
+      }
+      if (_selectedFilters[Filter.lactoseFree]! && meal.isLactoseFree) {
+        return true;
+      }
+      if (_selectedFilters[Filter.veganFree]! && meal.isVegan) {
+        return true;
+      }
+      if (_selectedFilters[Filter.vegeterianFree]! && meal.isVegetarian) {
+        return true;
+      }
+      return false;
+    }).toList();
+
     Widget activeScreen = CategoriesScreen(
       onToggleFavourite: _toggleMealFavouriteStatus,
+      availableMeals: availableMeals,
     );
     var activeTitle = "Categories";
     if (_selectedPageIndex == 1) {
