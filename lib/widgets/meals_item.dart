@@ -23,7 +23,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       elevation: 2,
       clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -45,7 +45,8 @@ class MealItem extends StatelessWidget {
               right: 0,
               left: 0,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 45, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 45, vertical: 8),
                 color: Colors.black54,
                 child: Column(
                   children: [
@@ -54,7 +55,7 @@ class MealItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.white),

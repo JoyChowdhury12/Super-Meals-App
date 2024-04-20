@@ -18,7 +18,7 @@ class MealDetailScreen extends StatelessWidget {
             onPressed: () {
               onToggleFavourite(meal);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.star,
             ),
           ),
@@ -34,7 +34,7 @@ class MealDetailScreen extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(
@@ -51,7 +51,7 @@ class MealDetailScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Theme.of(context).colorScheme.onBackground,
                       )),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(

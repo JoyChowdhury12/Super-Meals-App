@@ -32,7 +32,7 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Flters"),
+        title: const Text("Your Flters"),
       ),
       body: WillPopScope(
         onWillPop: () async {
@@ -64,7 +64,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: EdgeInsets.only(left: 34, right: 22),
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
             SwitchListTile(
               value: _lactoseFreeFilterSet,
@@ -84,7 +84,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: EdgeInsets.only(left: 34, right: 22),
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
             SwitchListTile(
               value: _veganFreeFilterSet,
@@ -104,7 +104,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: EdgeInsets.only(left: 34, right: 22),
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
             SwitchListTile(
               value: _vegeterianFreeFilterSet,
@@ -124,7 +124,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: EdgeInsets.only(left: 34, right: 22),
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
           ],
         ),

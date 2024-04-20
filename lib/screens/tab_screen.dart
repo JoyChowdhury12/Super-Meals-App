@@ -73,19 +73,19 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     final availableMeals = dummyMeals.where((meal) {
-      if (_selectedFilters[Filter.glutenFree]! && meal.isGlutenFree) {
-        return true;
+      if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
+        return false;
       }
-      if (_selectedFilters[Filter.lactoseFree]! && meal.isLactoseFree) {
-        return true;
+      if (_selectedFilters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+        return false;
       }
-      if (_selectedFilters[Filter.veganFree]! && meal.isVegan) {
-        return true;
+      if (_selectedFilters[Filter.veganFree]! && !meal.isVegan) {
+        return false;
       }
-      if (_selectedFilters[Filter.vegeterianFree]! && meal.isVegetarian) {
-        return true;
+      if (_selectedFilters[Filter.vegeterianFree]! && !meal.isVegetarian) {
+        return false;
       }
-      return false;
+      return true;
     }).toList();
 
     Widget activeScreen = CategoriesScreen(
@@ -116,7 +116,7 @@ class _TabScreenState extends State<TabScreen> {
           _changeScreen(index);
         },
         currentIndex: _selectedPageIndex,
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.set_meal), label: "Categories"),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favourites"),
