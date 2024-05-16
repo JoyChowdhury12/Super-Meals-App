@@ -7,7 +7,7 @@ import '../models/meal.dart';
 class MealDetailScreen extends ConsumerWidget {
   final Meal meal;
 
-  MealDetailScreen({super.key, required this.meal});
+  const MealDetailScreen({super.key, required this.meal});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,7 +26,19 @@ class MealDetailScreen extends ConsumerWidget {
                   content: Text(
                       wasAdded ? "Meal added as favourite " : "Meal Removed")));
             },
-            icon: isFavourite ? Icon(Icons.star) : Icon(Icons.star_border),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween<double>(begin: 0, end: 0.5).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isFavourite ? Icons.star : Icons.star_border,
+                key: ValueKey(isFavourite),
+              ),
+            ),
           ),
         ],
         title: Text(meal.title),
@@ -34,11 +46,14 @@ class MealDetailScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              meal.imageUrl,
-              height: 300,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               height: 16,

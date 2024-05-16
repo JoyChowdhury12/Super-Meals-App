@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:super_meals/provider/favourites_provider.dart';
-import 'package:super_meals/provider/meals_provider.dart';
 import 'package:super_meals/screens/categories_screen.dart';
 import 'package:super_meals/screens/filter_screen.dart';
 import 'package:super_meals/screens/meals_screen.dart';
@@ -28,8 +27,8 @@ class _TabScreenState extends ConsumerState<TabScreen> {
   void _setScreen(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == "filters") {
-      await Navigator.push<Map<Filter, bool>>(
-          context, MaterialPageRoute(builder: (context) => FilterScreen()));
+      await Navigator.push<Map<Filter, bool>>(context,
+          MaterialPageRoute(builder: (context) => const FilterScreen()));
     }
   }
 
@@ -42,9 +41,9 @@ class _TabScreenState extends ConsumerState<TabScreen> {
     );
     var activeTitle = "Categories";
     if (_selectedPageIndex == 1) {
-      final _favouriteMeals = ref.watch(favouriteMealsProvider);
+      final favouriteMeals = ref.watch(favouriteMealsProvider);
       activeScreen = MealsScreen(
-        meals: _favouriteMeals,
+        meals: favouriteMeals,
       );
       activeTitle = "Your Favourites";
     }

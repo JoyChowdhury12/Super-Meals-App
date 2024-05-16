@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175737024308",
+    "project_id": "supermeals-f04aa",
+    "storage_bucket": "supermeals-f04aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175737024308:android:14085ee65c1747fead3f61",
+        "android_client_info": {
+          "package_name": "com.example.super_meals"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGrQOJJxa5Ki9YaqlDp9ujgNu8DPOUXNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
